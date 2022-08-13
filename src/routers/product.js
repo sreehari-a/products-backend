@@ -27,12 +27,14 @@ router.post("/products", authMiddleware, async (req, res) => {
     let validArray = [];
     productsArray.map(
       ({
-        image,
-        title,
-        description,
-        price,
-        rating: { rate, count } = {},
-        category,
+        attributes: {
+          image,
+          title,
+          description,
+          price,
+          rating: { rate, count } = {},
+          category,
+        } = {},
       }) => {
         const isValidItem = categories.some((cat) => cat.name === category);
         if (!isValidItem) {
